@@ -2,39 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
+using System.Reflection;
+using System.IO;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using Plugin.Connectivity;
 
 namespace eXam
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public class App : Application
     {
+
+        public static Game CurrentGame { get; private set; }
+        public static IFileHelper FileHelper { get; private set; }
+
         public App()
         {
-            // The root page of your application
-            MainPage = new ContentPage
+
+            MainPage = new NavigationPage(new HomePage());
+            FileHelper = DependencyService.Get<IFileHelper>();
+        }
+
+        protected override async void OnStart()
+        {
+            if (CrossConnectivity.Current.IsConnected)
             {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
+                Debug.WriteLine("Connection exists");
+            }
+            else
+            { 
+                Debug.WriteLine("Connection does not exist");
+            }
+            
+            List<QuizQuestion> questions = null;
+            string result = await FileHelper.LoadLocalFileAsync("cachedquestions.xml");
+            if (result == null)
+            {
+                StreamReader stream = new StreamReader(typeof(App).GetTypeInfo()
+                                 .Assembly.GetManifestResourceStream("eXam.Data.questions.xml"));
+                result = stream.ReadToEnd();
+            }
+            await FileHelper.SaveLocalFileAsync("cachedquestions.xml", result);
+            questions = QuizQuestionXmlSerializer.Deserialize(result);
+            CurrentGame = new Game(questions);
         }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
+         
         protected override void OnSleep()
-        {
-            // Handle when your app sleeps
+        { 
         }
 
         protected override void OnResume()
