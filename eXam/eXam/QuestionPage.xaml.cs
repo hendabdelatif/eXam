@@ -16,7 +16,7 @@ namespace eXam
         }
 
 
-        public QuestionPage(QuizQuestion question)
+        public QuestionPage(QuestionPageViewModel question)
         {
             BindingContext = question;
             InitializeComponent();

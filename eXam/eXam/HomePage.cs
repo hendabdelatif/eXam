@@ -26,7 +26,7 @@ namespace eXam
 
             btn.Clicked += async (o, e) =>
             {
-                await this.Navigation.PushAsync(new QuestionPage(App.CurrentGame.CurrentQuestion));
+                await this.Navigation.PushAsync(new QuestionPage(new QuestionPageViewModel(App.CurrentGame)));
             };
 
             var image = new Image();

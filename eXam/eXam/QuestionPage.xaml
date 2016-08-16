@@ -12,10 +12,10 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Label Text ="{Binding Question}" Grid.Row="0"></Label>
-      <Button Text ="True" Grid.Row="1" Grid.Column="0"></Button>
-      <Button Text ="False" Grid.Row="1" Grid.Column="1"></Button>
-      <Label Text ="Correct" Grid.Row="2"></Label>
-      <Button Text ="Next" Grid.Row="3"></Button>
+      <Button BackgroundColor="Green" Command="{Binding TrueSelected}"  TextColor="White" Text ="True" Grid.Row="1" Grid.Column="0"></Button>
+      <Button BackgroundColor="Red" Command="{Binding  FalseSelected}"  TextColor="White" Text ="False" Grid.Row="1" Grid.Column="1"></Button>
+      <Label Text ="{Binding Response}" Grid.Row="2"></Label>
+      <Button Text ="Next" Command="{Binding NextSelected}" Grid.Row="3"></Button>
 
     </Grid>
 
