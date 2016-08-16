@@ -11,7 +11,7 @@
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <Label Text ="Any Text" Grid.Row="0"></Label>
+      <Label Text ="{Binding Question}" Grid.Row="0"></Label>
       <Button Text ="True" Grid.Row="1" Grid.Column="0"></Button>
       <Button Text ="False" Grid.Row="1" Grid.Column="1"></Button>
       <Label Text ="Correct" Grid.Row="2"></Label>

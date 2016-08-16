@@ -12,6 +12,13 @@ namespace eXam
     {
         public QuestionPage()
         {
+            InitializeComponent(); 
+        }
+
+
+        public QuestionPage(QuizQuestion question)
+        {
+            BindingContext = question;
             InitializeComponent();
         }
     }
