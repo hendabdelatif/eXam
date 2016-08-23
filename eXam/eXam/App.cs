@@ -51,7 +51,7 @@ namespace eXam
                         .GetTypeInfo()
                         .Assembly
                         .GetManifestResourceStream("eXam.Data.questions.json"));
-                    result = await stream.ReadToEndAsync();
+                    result = stream.ReadToEnd();
                 }
             }
             questions = JsonConvert.DeserializeObject<List<QuizQuestion>>(result);
