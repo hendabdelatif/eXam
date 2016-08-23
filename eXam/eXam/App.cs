@@ -23,8 +23,8 @@ namespace eXam
         }
          
         public App()
-        { 
-            MainPage = new NavigationPage(new HomePage()); 
+        {
+            MainPage = new NavigationPage(new HomePage());
             FileHelper = DependencyService.Get<IFileHelper>();
         }
 
@@ -56,6 +56,7 @@ namespace eXam
             }
             questions = JsonConvert.DeserializeObject<List<QuizQuestion>>(result);
             CurrentGame = new Game(questions);
+
         }
 
         protected override void OnSleep()

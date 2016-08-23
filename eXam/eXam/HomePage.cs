@@ -10,15 +10,13 @@ namespace eXam
 {
     public class HomePage : ContentPage
     {
-         
 
-      
+
+
 
         public HomePage()
         {
             var layout = new AbsoluteLayout();
-            
-           
             var btn = new Button();
             btn.Text = "Start eXam!";
             btn.TextColor = Color.White;
@@ -26,7 +24,10 @@ namespace eXam
 
             btn.Clicked += async (o, e) =>
             {
-                await this.Navigation.PushAsync(new QuestionPage(new QuestionPageViewModel(App.CurrentGame)));
+                if (App.CurrentGame != null)
+                {
+                    await this.Navigation.PushAsync(new QuestionPage(new QuestionPageViewModel(App.CurrentGame)));
+                }
             };
 
             var image = new Image();
