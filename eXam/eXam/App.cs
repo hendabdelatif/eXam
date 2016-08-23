@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xamarin.Forms.Xaml;
-using Xamarin.Forms;
-using System.Reflection;
-using System.IO;
-using System.Threading.Tasks;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
 using Plugin.Connectivity;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Reflection;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace eXam
 {
@@ -47,7 +43,7 @@ namespace eXam
             }
             else
             {
-                result = await FileHelper.LoadLocalFileAsync("cachedquestions.xml");
+                result = await FileHelper.LoadLocalFileAsync("cachedquestions.json");
                 if (result == null)
                 {
                     StreamReader stream = new StreamReader(
@@ -55,7 +51,7 @@ namespace eXam
                         .GetTypeInfo()
                         .Assembly
                         .GetManifestResourceStream("eXam.Data.questions.json"));
-                    result = stream.ReadToEnd();
+                    result = await stream.ReadToEndAsync();
                 }
             }
             questions = JsonConvert.DeserializeObject<List<QuizQuestion>>(result);
