@@ -25,6 +25,7 @@ namespace eXam
         public App()
         {
             MainPage = new NavigationPage(new HomePage());
+            DependencyService.Register<NavigationService>();
             FileHelper = DependencyService.Get<IFileHelper>();
         }
 

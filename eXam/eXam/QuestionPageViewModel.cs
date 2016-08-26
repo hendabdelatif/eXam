@@ -66,12 +66,18 @@ namespace eXam
             NextSelected.ChangeCanExecute();
         }
 
-        void OnNext()
+        async void OnNext()
         {
             if (game.NextQuestion())
             {
                 NextSelected.ChangeCanExecute();
                 RaiseAllPropertiesChanged();
+            }
+            else
+            {
+                NavigationService navService = DependencyService.Get<NavigationService>();
+                await navService.GotoPageAsync(AppPage.ReviewPage);
+
             }
         }
         bool OnCanExecuteNext()
