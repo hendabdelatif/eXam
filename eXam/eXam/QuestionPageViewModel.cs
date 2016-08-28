@@ -38,11 +38,11 @@ namespace eXam
                 }
                 if (game.CurrentQuestion.Answer == game.CurrentResponse)
                 {
-                    return "well done!";
+                    return "Correct!";
                 }
                 else
                 {
-                    return "Wrong Answer";
+                    return "Incorrect";
                 }
             }
         }

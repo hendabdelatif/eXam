@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effect="clr-namespace:eXam;assembly=eXam"
              x:Class="eXam.QuestionPage"
-  Title="eXam">
+  Title="eXam" BackgroundColor="White" Padding="20">
   <ContentPage.Content>
-    <Grid>
-      <Grid.RowDefinitions >
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
-      </Grid.RowDefinitions>
-      <Label Text ="{Binding Question}" Grid.Row="0"></Label>
-      <Button BackgroundColor="Green" Command="{Binding TrueSelected}"  TextColor="White" Text ="True" Grid.Row="1" Grid.Column="0"></Button>
-      <Button BackgroundColor="Red" Command="{Binding  FalseSelected}"  TextColor="White" Text ="False" Grid.Row="1" Grid.Column="1"></Button>
-      <Label Text ="{Binding Response}" Grid.Row="2"></Label>
-      <Button Text ="Next" Command="{Binding NextSelected}" Grid.Row="3"></Button>
 
-    </Grid>
+      <Grid>
+        <Grid.RowDefinitions >
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text ="{Binding Question}" TextColor="Black" HorizontalOptions="FillAndExpand" FontSize="15" Grid.ColumnSpan="2"></Label>
+        <Button BackgroundColor="#2BA6CF" Command="{Binding TrueSelected}"  TextColor="White" Text ="True" Grid.Row="1" Grid.Column="0" >
+          <Button.Effects>
+            <effect:GradientEffect />
+          </Button.Effects>
+        </Button>
+        
+        <Button BackgroundColor="Red" Command="{Binding  FalseSelected}"  TextColor="White" Text ="False" Grid.Row="1" Grid.Column="1" >
+          <Button.Effects>
+            <effect:GradientEffect />
+          </Button.Effects>
+        </Button>
+        
+        <Label Text ="{Binding Response}" Grid.Row="2" TextColor="Red"></Label>
+        <Button BackgroundColor="#45F505" Text ="Next" Command="{Binding NextSelected}" TextColor="White" Grid.Row="3" Grid.Column="1" >
+          <Button.Effects>
+            <effect:DisabledOpacityEffect />
+          </Button.Effects>
+        </Button>
 
+      </Grid>
   </ContentPage.Content>
 </ContentPage>

@@ -10,17 +10,13 @@ namespace eXam
 {
     public class HomePage : ContentPage
     {
-
-
-
-
         public HomePage()
         {
             var layout = new AbsoluteLayout();
             var btn = new Button();
             btn.Text = "Start eXam!";
             btn.TextColor = Color.White;
-            btn.BackgroundColor = Color.Black;
+            btn.BackgroundColor = Color.FromHex("2BA6CF");
 
             btn.Clicked += async (o, e) =>
             {
@@ -36,7 +32,7 @@ namespace eXam
             layout.Children.Add(btn, new Rectangle(0.5, 0.5, 150, 60), AbsoluteLayoutFlags.PositionProportional);
             this.Content = new StackLayout()
             {
-                BackgroundColor = Color.FromHex("#333"),
+                BackgroundColor = Color.White,
                 Children = {
                     layout
                 }

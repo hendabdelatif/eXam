@@ -36,7 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="DisabledOpacityEffect.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GradientEffect.cs" />
     <Compile Include="HomePage.cs" />
     <Compile Include="IFileHelper.cs" />
     <Compile Include="NavigationService.cs" />

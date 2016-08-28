@@ -1,16 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="eXam.ReviewPage">
-  <ListView x:name="listQuestions" ItemTapped="itemTapped" HasUnevenRows="True" ItemsSource="QuestionViewModels" >
-        <ListView.ItemTemplate>
+             x:Class="eXam.ReviewPage" BackgroundColor="White" Title="Review" >
+  <ListView  x:name="listQuestions" ItemTapped="itemTapped" HasUnevenRows="True" ItemsSource="{Binding QuestionViewModels}" CachingStrategy="RecycleElement" SeparatorColor="Gray">
+    <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Question}"></Label>
-             <Label Text="{Binding Answer}"></Label>
-             <Label Text="{Binding Response}"></Label>
-         </StackLayout>
+          <StackLayout Padding="5">
+            <Label Text="{Binding Question}" TextColor="Gray"></Label>
+            <Label Text="{Binding Answer, StringFormat='Answer: {0}'}" TextColor="Black"></Label>
+            <Label Text="{Binding Response, StringFormat='Your Answer: {0}'}" TextColor="Red" >
+              <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsCorrect}"
+                             Value="True">
+                  <Setter Property="TextColor" Value="Green" />
+                </DataTrigger>
+              </Label.Triggers>
+            </Label>
+          </StackLayout>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
